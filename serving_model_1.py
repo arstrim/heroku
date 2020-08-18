@@ -38,6 +38,9 @@ def predict_single():
 
 @app.route('/predict_json')
 def predict_json():
+    
+    with open('my_model.pkl', 'rb') as file:
+        model = pickle.load(file)
 
     data = request.get_json()
     df = pd.DataFrame(data=data['data'])
@@ -53,6 +56,9 @@ def predict_json():
 
 @app.route('/predict_list')
 def predict_list():
+
+    with open('my_model.pkl', 'rb') as file:
+        model = pickle.load(file)
 
     data = request.get_json()
     df = pd.DataFrame(data)
