@@ -3,6 +3,7 @@ from flask import request, jsonify
 import pickle
 import numpy as np
 import pandas as pd
+import os
 
 
 app = Flask(__name__)
@@ -65,4 +66,8 @@ def predict_list():
 if __name__ == '__main__':
     with open('my_model.pkl', 'rb') as file:
         model = pickle.load(file)
-    app.run()
+    port = os.environ.get('PORT')
+    if port:
+        app.run(host='0.0.0.0', port=int(port))
+    else:
+        app.run()
