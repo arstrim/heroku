@@ -15,6 +15,8 @@ def hello():
 
 @app.route('/predict_single')
 def predict_single():
+    with open('my_model.pkl', 'rb') as file:
+        model = pickle.load(file)
 
     CRIM = float(request.args.get('CRIM'))
     ZN = float(request.args.get('ZN'))
@@ -64,8 +66,8 @@ def predict_list():
 
 
 if __name__ == '__main__':
-    with open('my_model.pkl', 'rb') as file:
-        model = pickle.load(file)
+    # with open('my_model.pkl', 'rb') as file:
+    #     model = pickle.load(file)
     port = os.environ.get('PORT')
     if port:
         app.run(host='0.0.0.0', port=int(port))
