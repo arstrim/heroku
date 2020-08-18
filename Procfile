@@ -1,1 +1,1 @@
-web: gunicorn serving_model_1.py
+web: gunicorn serving_model_1.py:app
